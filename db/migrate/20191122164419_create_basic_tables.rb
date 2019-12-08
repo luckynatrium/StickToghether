@@ -6,18 +6,17 @@ class CreateBasicTables < ActiveRecord::Migration[6.0]
       t.string :role
       t.integer :carma
     end
-    create_table :event do |t|
+    create_table :events do |t|
       t.string :name
-      t.string :description
+      t.text :description
       t.timestamp :date
       t.timestamp :duration
     end
-    create_table :interest do |t|
+    create_table :interests do |t|
       t.string :name
     end
     create_table :friends do |t|
-      t.integer :id_user1
-      t.integer :id_user2
+      t.boolean :confirmation
     end
   end
 end

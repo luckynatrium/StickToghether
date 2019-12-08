@@ -1,21 +1,27 @@
 class AuxiliaryTables < ActiveRecord::Migration[6.0]
-  def change
-    create_table :users_events do
-      add_reference :users_events, :user, foreign_key: true
-      add_reference :users_events, :event, foreign_key: true
+  def up
+    create_table :attendance do |t|
+      t.references :user
+      t.references :event
     end
-    create_table :users_interests do
-      add_reference :users_interests, :user, foreign_key: true
-      add_reference :users_interests, :interest, foreign_key: true
+    create_table :users_interests do |t|
+      t.references :user
+      t.references :interest
     end
-    create_table :events_interests do
-      add_reference :events_interests, :event, foreign_key: true
-      add_reference :events_interests, :interests, foreign_key: true
+
+    create_table :events_interests do |t|
+      t.references :event
+      t.references :interest
     end
-    drop_table :friends
-    create_table :friends do
-      add_reference :friends, :user1, foreign_key: true
-      add_reference :friends, :user2, foreign_key: true
+    change_table :friends do |t|
+      t.references :user1
+      t.references :user2
     end
+  end
+
+  def down
+    drop_table :attendance
+    drop_table :users_interests
+    drop_table :events_interests
   end
 end

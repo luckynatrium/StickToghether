@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   # GET /user/new
   def new
     @user = User.new
-
   end
 
   # GET /user/1/edit

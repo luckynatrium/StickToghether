@@ -11,3 +11,4 @@ if Rails.env =='development'
   User.create(name: 'user33', age: 34, role: 'M', carma: 1)
 
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

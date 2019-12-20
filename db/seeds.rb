@@ -3,8 +3,8 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   movies = Movie.form([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.form(name: 'Luke', movie: movies.first)
 if Rails.env =='development'
   User.create(name: 'user1',age: 13, role: 'A',carma: 15)
   User.create(name: 'user2', age: 18,role: 'U', carma: 89 )

@@ -6,9 +6,12 @@
 #   movies = Movie.form([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.form(name: 'Luke', movie: movies.first)
 if Rails.env =='development'
-  User.create(name: 'user1',age: 13, role: 'A',carma: 15)
-  User.create(name: 'user2', age: 18,role: 'U', carma: 89 )
-  User.create(name: 'user33', age: 34, role: 'M', carma: 1)
+  #User.create(name: 'user1',age: 13, role: 'A',carma: 15)
+  #User.create(name: 'user2', age: 18,role: 'U', carma: 89 )
+  #User.create(name: 'user33', age: 34, role: 'M', carma: 1)
+
+  Event.create(name: 'go out to cinema',description: 'hey, do you wanna see new SW movie?',date: '23.12.2019',duration: '15')
+
 
 end
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+#AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

@@ -1,12 +1,16 @@
-<h2>Sign up</h2>
 
   <%= render "devise/shared/error_messages", resource: resource %>
   <html lang="en">
   <body>
 
   <header>
+
+  </header>
+  <!-- Main navigation -->
+  <!--Main Layout-->
+  <main>
     <!-- Full Page Intro -->
-    <div class="view" style="background-image: url('/app/assets/images/kekw.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <div class = "bg_login">
       <!-- Mask & flexbox options-->
       <div class="mask rgba-gradient align-items-center">
         <!-- Content -->
@@ -33,29 +37,18 @@
                     <hr class="hr-light">
                   </div>
                   <!--Body-->
-                    <%= bootstrap_form_for @user, as: @user, url: registration_path(@user) do |f| %>
-                      <%= f.text_field :name %>
-                      <%= f.email_field :email %>
-                      <% if @minimum_password_length %>
-                        <em>(<%= @minimum_password_length %> characters minimum)</em>
-                      <% end %><br />
-                      <%= f.password_field :password %>
-                      <%= f.number_field :age %>
-                      <%= f.submit "Sign up" %>
-                    <% end %>
+                  <%= bootstrap_form_for @user, as: @user, url: registration_path(@user) do |f| %>
+                    <%= f.text_field :name %>
+                    <%= f.email_field :email %>
+                    <% if @minimum_password_length %>
+                      <em>(<%= @minimum_password_length %> characters minimum)</em>
+                    <% end %><br />
+                    <%= f.password_field :password %>
+                    <%= f.number_field :age %>
+                    <%= f.submit "Sign up" %>
+                  <% end %>
                   <div class="text-center mt-4">
                     <hr class="hr-light mb-3 mt-4">
-                    <div class="inline-ul text-center">
-                      <a class="p-2 m-2 tw-ic">
-                        <i class="fab fa-twitter white-text"></i>
-                      </a>
-                      <a class="p-2 m-2 li-ic">
-                        <i class="fab fa-linkedin-in white-text"> </i>
-                      </a>
-                      <a class="p-2 m-2 ins-ic">
-                        <i class="fas fa-instagram white-text"> </i>
-                      </a>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -68,23 +61,20 @@
         <!-- Content -->
       </div>
       <!-- Mask & flexbox options-->
+      <div class="container">
+        <!--Grid row-->
+        <div class="row py-5">
+          <!--Grid column-->
+          <div class="col-md-12 text-center">
+            <p>Lorem ipsum </p>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
     </div>
     <!-- Full Page Intro -->
-  </header>
-  <!-- Main navigation -->
-  <!--Main Layout-->
-  <main>
-    <div class="container">
-      <!--Grid row-->
-      <div class="row py-5">
-        <!--Grid column-->
-        <div class="col-md-12 text-center">
-          <p>Lorem ipsum </p>
-        </div>
-        <!--Grid column-->
-      </div>
-      <!--Grid row-->
-    </div>
+
   </main>
   <!--Main Layout-->
 

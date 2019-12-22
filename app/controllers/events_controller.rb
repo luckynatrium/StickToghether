@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
 
   def index
-    @events = Event.all
+    @events = Event.all #TODO filtration and limit a number of events
   end
 
   def show

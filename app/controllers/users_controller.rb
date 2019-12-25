@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    #TODO fix problem with edit profile error
   end
 
   # GET /user/new

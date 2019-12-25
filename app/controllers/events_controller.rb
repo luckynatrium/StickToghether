@@ -17,6 +17,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.creator_id = current_user.id unless current_user.nil?
+    @event.interests << Interest.find(params[:interest][0])
     respond_to do |format|
       if @event.save!
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -37,6 +38,6 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:name, :description, :date, :duration)
+    params.require(:event).permit(:name, :description, :date, :duration, :interest)
   end
 end

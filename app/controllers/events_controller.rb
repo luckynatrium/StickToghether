@@ -7,6 +7,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @creator = @event.creator
   end
 
   def new
@@ -15,9 +16,9 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-
+    @event.creator_id = current_user.id unless current_user.nil?
     respond_to do |format|
-      if @event.save
+      if @event.save!
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
@@ -25,6 +26,7 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   private
@@ -35,6 +37,6 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:name, :description, :date, :duration,)
+    params.require(:event).permit(:name, :description, :date, :duration)
   end
 end

@@ -19,4 +19,11 @@ class CreateBasicTables < ActiveRecord::Migration[6.0]
       t.boolean :confirmation
     end
   end
+
+  def down
+    drop_table :users
+    drop_table :events
+    drop_table :friends
+    drop_table :interests
+  end
 end

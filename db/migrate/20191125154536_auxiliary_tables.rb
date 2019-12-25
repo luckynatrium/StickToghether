@@ -23,5 +23,9 @@ class AuxiliaryTables < ActiveRecord::Migration[6.0]
     drop_table :attendance
     drop_table :users_interests
     drop_table :events_interests
+    change_table :friends do |t|
+      t.remove_references :user1
+      t.remove_references :user2
+    end
   end
 end

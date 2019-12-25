@@ -1,39 +1,47 @@
-<div class="container py-5">
-  <div class="row">
-    <div class="col-lg-8 mx-auto">
+<html>
+  <body>
+    <div class="bg_index">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
 
-      <!-- List group-->
-      <ul class="list-group shadow">
-        <% @events.each do |event| %>
+            <!-- List group-->
+            <ul class="list-group shadow">
+              <% @events.each do |event| %>
 
-        <!-- list group item-->
-        <li class="list-group-item">
-          <!-- Custom content-->
-          <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-            <div class="media-body order-2 order-lg-1">
-              <h5 class="mt-0 font-weight-bold mb-2"><%= event.name %></h5>
-              <p class="font-italic text-muted mb-0 small"><%= event.description %></p>
-              <div class="d-flex align-items-center justify-content-between mt-1">
-                <h6 class="font-weight-bold my-2"><%= event.date %></h6>
-                <ul class="list-inline small">
-                  <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                  <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                  <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                  <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                  <li class="list-inline-item m-0"><i class="fa fa-star-o text-gray"></i></li>
-                </ul>
-                <%= link_to "Show", controller: 'events', action: 'show', id: event.id %>
-              </div>
-            </div>
-            <img src="event_def.png" alt="Generic placeholder image" width="200" >
+                <!-- list group item-->
+                <li class="list-group-item">
+                  <!-- Custom content-->
+                  <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                    <div class="media-body order-2 order-lg-1">
+                      <h5 class="mt-0 font-weight-bold mb-2"><%= event.name %></h5>
+                      <p class="font-italic text-muted mb-0 small"><%= event.description %></p>
+                      <div class="d-flex align-items-center justify-content-between mt-1">
+                        <h6 class="font-weight-bold my-2"><%= event.date %></h6>
+                        <ul class="list-inline small">
+                          <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                          <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                          <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                          <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                          <li class="list-inline-item m-0"><i class="fa fa-star-o text-gray"></i></li>
+                        </ul>
+                        <%= link_to "Show", controller: 'events', action: 'show', id: event.id  %>
+                      </div>
+                    </div>
+                    <% unless event.images.empty? %>
+                      <%= image_tag( event.images.first.url, :class =>'e_icon') %>
+                    <% end %>
 
+                  </div>
+                  <!-- End -->
+                </li>
+                <!-- End -->
+              <% end %>
+            </ul>
+            <!-- End -->
           </div>
-          <!-- End -->
-        </li>
-        <!-- End -->
-        <% end %>
-      </ul>
-      <!-- End -->
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </body>
+</html>

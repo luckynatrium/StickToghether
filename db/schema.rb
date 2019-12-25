@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_17_073826) do
+ActiveRecord::Schema.define(version: 2019_12_25_120650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2019_12_17_073826) do
     t.text "description"
     t.datetime "date"
     t.datetime "duration"
+    t.bigint "creator_id"
   end
 
   create_table "events_interests", force: :cascade do |t|
@@ -70,6 +71,15 @@ ActiveRecord::Schema.define(version: 2019_12_17_073826) do
     t.index ["user2_id"], name: "index_friends_on_user2_id"
   end
 
+  create_table "images", force: :cascade do |t|
+    t.string "url", null: false
+    t.string "imageable_type", null: false
+    t.bigint "imageable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
+  end
+
   create_table "interests", force: :cascade do |t|
     t.string "name"
   end
@@ -84,17 +94,7 @@ ActiveRecord::Schema.define(version: 2019_12_17_073826) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
-    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email"
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -105,4 +105,5 @@ ActiveRecord::Schema.define(version: 2019_12_17_073826) do
     t.index ["user_id"], name: "index_users_interests_on_user_id"
   end
 
+  add_foreign_key "events", "users", column: "creator_id"
 end

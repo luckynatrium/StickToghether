@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   root to: 'events#index'
   resources :events
+  get '/events/in','events#in'
 end

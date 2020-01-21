@@ -5,6 +5,10 @@ class EventsController < ApplicationController
     @events = Event.all #TODO filtration and limit a number of events
   end
 
+  def in
+    redirect_to @event
+  end
+
   def show
     @event = Event.find(params[:id])
     @creator = @event.creator

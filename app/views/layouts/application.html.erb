@@ -24,17 +24,18 @@
         <li class="nav-item">
           <a class="nav-link" href="/events/new">New event</a>
         </li>
-        <% unless current_user.nil? %>
-        <li class = "nav-item">
-          <%= link_to('Profile', {controller:'users',action: :show, id: current_user.id}, class: 'nav-link')%>
+        <% if current_user.nil? %>
+        <li class="nav-item">
+              <%=  link_to 'Sign in', new_user_session_path, class: 'nav-link' %>
         </li>
-        <li class = "nav-item">
-          <a class = "nav-link" href = "/users/sign_out" data-method="delete">Sign_out</a>
+        <%  else %>
+        <li class="nav-item">
+          <%=  link_to(current_user.name,user_path(:id => current_user.id), class: 'nav-link') %>
+              </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/sign_out" data-method="delete">Sign_out</a>
         </li>
-        <% end %>
-        <li class = "nav-item">
-          <a class = "nav-link" href = "/users/sign_in" data-method="get">Sign_in</a>
-        </li>
+        <%  end %>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

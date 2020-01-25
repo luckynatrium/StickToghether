@@ -9,6 +9,7 @@ class EventsController < ApplicationController
     redirect_to @event
   end
 
+
   def show
     @event = Event.find(params[:id])
     @creator = @event.creator

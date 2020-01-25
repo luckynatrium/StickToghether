@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  has_many :events, through: :attendance
+  has_many :attendances
+  has_many :events, through: :attendances
   has_many :friends, join_table: :friends
   has_and_belongs_to_many :interests, join_table: :users_interests
 

@@ -1,27 +1,24 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
+  before_action :set_event, :except => [:index, :new]
 
   def index
     @events = Event.all #TODO filtration and limit a number of events
   end
 
   def in
-    set_event
-    redirect_to @event
+    render :'events/request'
   end
 
 
   def show
-    set_event
     @creator = @event.creator
   end
 
   def edit
-    set_event
   end
 
   def update
-    set_event
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to event_path, notice: 'Event was successfully updated.' }

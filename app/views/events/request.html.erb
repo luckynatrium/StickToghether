@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="success_mes">
+        <h1>
+          Your request for event has been send. Creator should accept you. </h1>
+        <div class="aft_req_actions_mes">
+          Do you wanna check event's information or find new event?
+        </div>
+        <div class="error-actions">
+          <%= link_to "Event's page", event_path(:id => @event.id), class:"btn btn-lg" %>
+          <%= link_to "All events", root_path, class:"btn btn-lg" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

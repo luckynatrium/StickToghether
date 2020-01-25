@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   # GET /user/1/edit
   def edit
+
   end
 
   # POST /user

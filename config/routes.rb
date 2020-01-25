@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resource :user, only: [:show, :edit, :update]
 
   root to: 'events#index'
+  get 'events/in', to: 'events#in', as: 'request'
   resources :events
-  get '/events/in','events#in'
+
 end

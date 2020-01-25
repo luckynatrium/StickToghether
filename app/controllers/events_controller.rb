@@ -6,21 +6,22 @@ class EventsController < ApplicationController
   end
 
   def in
+    set_event
     redirect_to @event
   end
 
 
   def show
-    @event = Event.find(params[:id])
+    set_event
     @creator = @event.creator
   end
 
   def edit
-    @event = Event.find(params[:id])
+    set_event
   end
 
   def update
-    @event = Event.find(params[:id])
+    set_event
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to event_path, notice: 'Event was successfully updated.' }

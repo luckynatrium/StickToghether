@@ -47,7 +47,7 @@
           <% if current_user.id == @creator.id %>
             <%= link_to "Edit Profile", edit_event_path(:id => @event.id) ,class:"profile-edit-btn"%>
           <% else %>
-            <%=link_to("I'm in", 'events/in', method: :put) %>
+            <%= link_to("I'm in", request_url(:id => @event.id),class:"profile-edit-btn") %>
           <% end %>
         </div>
       </div>

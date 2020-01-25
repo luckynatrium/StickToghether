@@ -7,9 +7,26 @@ class EventsController < ApplicationController
   end
 
   def in
-    render :'events/request'
+    if @event.users.include? current_user
+      flash.notice = 'You already visiting this event'
+    else
+      @event.users << current_user
+      @message = 'Your request for event has been send. Creator should accept you.'
+      render :'events/attendance'
+    end
+
   end
 
+  def out
+    if @event.users.include? current_user
+      @event.users.delete current_user
+      @message = 'You are no longer visiting this event.'
+      render :'events/attendance'
+    else
+      flash.notice = 'You already not visiting this event'
+    end
+
+  end
 
   def show
     @creator = @event.creator

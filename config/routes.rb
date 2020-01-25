@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   root to: 'events#index'
   get 'events/in', to: 'events#in', as: 'request'
+  get 'events/out', to: 'events#out', as: 'cancel'
   resources :events
 
 end

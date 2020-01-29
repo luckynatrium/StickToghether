@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(version: 2020_01_25_111556) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "attendance", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "event_id"
+    t.index ["event_id"], name: "index_attendance_on_event_id"
+    t.index ["user_id"], name: "index_attendance_on_user_id"
+  end
+
   create_table "attendances", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "event_id"

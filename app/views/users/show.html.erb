@@ -36,6 +36,12 @@
             <li class="nav-item">
               <a class="nav-link" id="events_c-tab" data-toggle="tab" href="#events_c" role="tab" aria-controls="events_c" aria-selected="false">Created events</a>
             </li>
+            <% if current_user.id == @user.id  %>
+            <li class="nav-item">
+              <a class="nav-link" id="my_requests-tab" data-toggle="tab" href="#my_requests" role="tab"
+                 aria-controls="my_requests" aria-selected="false">My requests</a>
+            </li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -104,9 +110,8 @@
                   <small class="text-muted">3 days ago</small>
                 </div>
               </div>
-                <p class="mb-1"><%= eg.reduced_description 100 %>></p>
+                <p class="mb-1"><%= eg.reduced_description 100 %></p>
                 <small class="text-muted">Donec id elit non mi porta.</small>
-
               <% end %>
             </div>
           </div>
@@ -119,7 +124,21 @@
                     <small class="text-muted">3 days ago</small>
                   </div>
                 </div>
-                <p class="mb-1"><%= ec.reduced_description 100 %></p>
+                <p class="mb-1"><%= ec.reduced_description 100 %> </p>
+                <small class="text-muted"> Donec id elit non mi porta.</small>
+            <% end %>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="my_requests" role="tabpanel" aria-labelledby="my_requests-tab">
+            <div class="list-group">
+              <% current_user.all_requests.each do |event| %>
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><%= link_to eg.name, eg%></h5>
+                    <small class="text-muted">3 days ago</small>
+                  </div>
+                </div>
+                <p class="mb-1"><%= eg.reduced_description 100 %></p>
                 <small class="text-muted">Donec id elit non mi porta.</small>
 
               <% end %>

@@ -12,4 +12,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def requests_for_event(event)
+    case event.class
+    when Event
+      attendances.where(confirmation: false, event_id: event.id)
+    when Integer
+      attendances.where(confirmation: false, event_id: event)
+    else
+      Attendance.none
+    end
+  end
+
 end

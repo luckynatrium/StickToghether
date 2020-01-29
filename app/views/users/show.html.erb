@@ -31,7 +31,10 @@
               <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+              <a class="nav-link" id="events_g-tab" data-toggle="tab" href="#events_g" role="tab" aria-controls="events_g" aria-selected="false">Visiting Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="events_c-tab" data-toggle="tab" href="#events_c" role="tab" aria-controls="events_c" aria-selected="false">Created events</a>
             </li>
           </ul>
         </div>
@@ -92,52 +95,34 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div class="row">
-              <div class="col-md-6">
-                <label>Experience</label>
+          <div class="tab-pane fade" id="events_g" role="tabpanel" aria-labelledby="events_g-tab">
+            <div class="list-group">
+              <% @events_g.each do |eg| %>
+              <div class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1"><%= link_to eg.name, eg%></h5>
+                  <small class="text-muted">3 days ago</small>
+                </div>
               </div>
-              <div class="col-md-6">
-                <p>Expert</p>
-              </div>
+                <p class="mb-1"><%= eg.reduced_description 100 %>></p>
+                <small class="text-muted">Donec id elit non mi porta.</small>
+
+              <% end %>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Hourly Rate</label>
-              </div>
-              <div class="col-md-6">
-                <p>10$/hr</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Total Projects</label>
-              </div>
-              <div class="col-md-6">
-                <p>230</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>English Level</label>
-              </div>
-              <div class="col-md-6">
-                <p>Expert</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Availability</label>
-              </div>
-              <div class="col-md-6">
-                <p>6 months</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label>Your Bio</label><br/>
-                <p>Your detail description</p>
-              </div>
+          </div>
+          <div class="tab-pane fade" id="events_c" role="tabpanel" aria-labelledby="events_c-tab">
+            <div class="list-group">
+              <% @events_c.each do |ec| %>
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><%= link_to ec.name, ec%></h5>
+                    <small class="text-muted">3 days ago</small>
+                  </div>
+                </div>
+                <p class="mb-1"><%= ec.reduced_description 100 %></p>
+                <small class="text-muted">Donec id elit non mi porta.</small>
+
+              <% end %>
             </div>
           </div>
         </div>

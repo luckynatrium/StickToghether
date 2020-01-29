@@ -6,7 +6,10 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    #TODO fix problem with edit profile error
+    confirm_events = @user.events #.where confirmation: true
+    @events_g = confirm_events.where.not creator_id: @user.id
+    @events_c = Event.where creator_id: @user.id
+    #TODO add condition for confirmation
   end
 
   # GET /user/new
@@ -29,7 +32,7 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new }
+        format.html { render 'devise/registrations/new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

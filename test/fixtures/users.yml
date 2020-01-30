@@ -1,13 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+alice:
+  name: Alice
   age: 1
-  role: MyString
+  role: idk_what_roles_are
   carma: 1
+  email: alice@example.com
 
-two:
-  name: MyString
+bob:
+  name: Bob
   age: 1
-  role: MyString
+  role: idk_what_roles_are
   carma: 1
+  email: bob@example.com

@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyText
+boring_event:
+  name: First Event
+  description: Boring Meeting
   date: 2019-12-10 20:37:27
   duration: 2019-12-10 20:37:27
 
-two:
-  name: MyString
-  description: MyText
+great_event:
+  name: Second Event
+  description: Great Meeting
   date: 2019-12-10 20:37:27
   duration: 2019-12-10 20:37:27

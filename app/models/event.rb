@@ -5,6 +5,14 @@ class Event < ApplicationRecord
   has_many :images, as: :imageable
   belongs_to :creator, class_name:'User', foreign_key: :creator_id
 
+  def unconfirmed_users
+    users.joins(:attendances).where(attendances: {confirmation: false})
+  end
+
+  def confirmed_users
+    users.joins(:attendances).where(attendances: {confirmation: true})
+  end
+
   def reduced_description(restriction)
     if description.length > restriction
       description[0,100] + '...'

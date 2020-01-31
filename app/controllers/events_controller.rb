@@ -10,7 +10,7 @@ class EventsController < ApplicationController
     if @event.users.include? current_user
       flash.notice = 'You already visiting this event'
     else
-      @event.users << current_user
+      Attendance.create! attendance_params
       @message = 'Your request for event has been send. Creator should accept you.'
       render :'events/attendance'
     end
@@ -19,7 +19,7 @@ class EventsController < ApplicationController
 
   def out
     if @event.users.include? current_user
-      @event.users.delete current_user
+      Attendance.destroy_by user_id: current_user.id, event_id: @event.id
       @message = 'You are no longer visiting this event.'
       render :'events/attendance'
     else
@@ -76,4 +76,11 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:name, :description, :date, :duration, :interest)
   end
+
+  def attendance_params
+    {:user_id => current_user.id, :event_id => @event.id, :confirmation => false,
+     :requested_at => Time.now }
+  end
+
+
 end

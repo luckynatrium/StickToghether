@@ -13,7 +13,18 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def requests()
-    events.where(attendances: {confirmation: false}).order requested_at: :asc
+    ev = events.where(attendances: {confirmation: false}).order requested_at: :asc
+    req_time = ev.extract_associated(:attendances).map {|collection| collection.first.requested_at}.sort
+    pack_to_h(ev,req_time)
+  end
+
+  def pack_to_h(events, times)
+    res = []
+    events.each_with_index do |x, i|
+      res << [:event,:time].zip([x, times[i]])
+      res[i] = res[i].to_h
+    end
+    res
   end
 
 end

@@ -131,14 +131,14 @@
           </div>
           <div class="tab-pane fade" id="my_requests" role="tabpanel" aria-labelledby="my_requests-tab">
             <div class="list-group">
-              <% current_user.requests.each do |event| %>
+              <% current_user.requests.each do |pack| %>
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                   <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><%= link_to event.name, event%></h5>
-                    <small class="text-muted">3 days ago</small>
+                    <h5 class="mb-1"><%= link_to pack[:event].name, pack[:event]%></h5>
+                    <small class="text-muted"><%= pack[:time] %></small>
                   </div>
                 </div>
-                <p class="mb-1"><%= event.reduced_description 100 %></p>
+                <p class="mb-1"><%= pack[:event].reduced_description 100 %></p>
                 <small class="text-muted">Donec id elit non mi porta.</small>
 
               <% end %>

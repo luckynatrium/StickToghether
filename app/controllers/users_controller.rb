@@ -6,9 +6,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    #confirmed_events_ids = @user.events.where confirmation: true
-    confirmed_events_ids = @user.attendances.where(confirmation: true).select(:event_id)
-    confirmed_events = @user.events.where(id: confirmed_events_ids)
     @events_g = Event.where.not creator_id: @user.id
     @events_c = Event.where creator_id: @user.id
     # TODO: add condition for confirmation

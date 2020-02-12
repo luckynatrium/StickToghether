@@ -92,9 +92,12 @@
                     <div class="d-flex w-100 justify-content-between">
                       <h5 class="mb-1"><%= link_to usr.name, user_url(:id => usr.id)%></h5>
                       <small class="text-muted"> </small>
+                      <%= link_to 'Apply', apply_event_url(:user_id => usr.id), method: :patch %>
+                      <%= link_to 'Reject', reject_event_url(:user_id => usr.id),method: :delete %>
                     </div>
                   </div>
-                  <p class="mb-1"><% %></p>
+                  <p class="mb-1"></p>
+                  <p class="mb-1"></p>
                   <small class="text-muted">Donec id elit non mi porta.</small>
 
                 <% end %>

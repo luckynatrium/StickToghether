@@ -4,15 +4,15 @@ class Event < ApplicationRecord
   has_and_belongs_to_many :interests, join_table: :events_interests
   has_many :images, as: :imageable
   belongs_to :creator, class_name:'User', foreign_key: :creator_id
-  scope :confirmed, ->{ where(attendances: {confirmation: false}) }
-  scope :unconfirmed, -> { where(attendances: {confirmation: true})}
+  scope :confirmed, ->{ where(attendances: {confirmation: true}) }
+  scope :unconfirmed, -> { where(attendances: {confirmation: false})}
 
   def unconfirmed_users
-    users.where(attendances: {confirmation: false})
+    users.unconfirmed
   end
 
   def confirmed_users
-    users.where(attendances: {confirmation: true})
+    users.confirmed
   end
 
   def reduced_description(restriction)

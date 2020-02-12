@@ -7,13 +7,16 @@ class User < ApplicationRecord
   has_many :images, as: :imageable
   validates :name, :role, presence: true
 
+  scope :confirmed, ->{ where(attendances: {confirmation: true}) }
+  scope :unconfirmed, -> { where(attendances: {confirmation: false})}
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   def requests()
-    ev = events.where(attendances: {confirmation: false}).order requested_at: :asc
+    ev = events.unconfirmed.order requested_at: :asc
     req_time = ev.extract_associated(:attendances).map {|collection| collection.first.requested_at}.sort
     pack_to_h(ev,req_time)
   end

@@ -25,7 +25,16 @@ class EventsController < ApplicationController
     else
       flash.notice = 'You already not visiting this event'
     end
+  end
 
+  def apply
+    Attendance.find_by(user_id: params[:user_id], event_id: @event.id).update_attribute :confirmation, true
+    show
+  end
+
+  def reject
+    Attendance.destroy_by user_id: params[:user_id], event_id: @event.id
+    render :'events/show'
   end
 
   def show

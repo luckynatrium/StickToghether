@@ -60,7 +60,12 @@
         <div class="col-md-4">
           <div class="profile-work">
             <p>Participants</p>
-            <a href="">participant 1</a><br/>
+            <% @event.participants.each do |participant| %>
+              <%= link_to participant.name, participant  %>
+              <%= link_to 'Kick',
+                          reject_event_url(:user_id => participant.id),method: :delete %>
+              <br/>
+            <% end %>
           </div>
         </div>
         <div class="col-md-8">

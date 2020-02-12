@@ -34,7 +34,7 @@ class EventsController < ApplicationController
 
   def reject
     Attendance.destroy_by user_id: params[:user_id], event_id: @event.id
-    render :'events/show'
+    show
   end
 
   def show

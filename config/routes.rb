@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
+  root  'events#index', as: 'main_page' # Fixme overriding exciting phantom route with name root
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
   devise_for :users
   resource :user, only: [:show, :edit, :update]
-
-  root to: 'events#index'
-
-
 
   get 'events/in', to: 'events#in', as: 'request'
   get 'events/out', to: 'events#out', as: 'cancel'

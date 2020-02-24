@@ -22,9 +22,6 @@
           <h5>
             <%= @user.name %>
           </h5>
-          <h6>
-            Designer
-          </h6>
           <p class="proile-rating">Carma : <%= @user.carma %></p>
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -57,8 +54,6 @@
 
           <p>Friends</p>
           <br/>
-          <a href="">Bootsnipp Profile</a><br/>
-          <a href="">Bootply Profile</a>
           <p>Interests</p>
           <%= @user.interests.each do |i| %>
             <%= i.name %>
@@ -84,22 +79,6 @@
                 <p><%= @user.email %></p>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Phone</label>
-              </div>
-              <div class="col-md-6">
-                <p>123 456 7890</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label>Profession</label>
-              </div>
-              <div class="col-md-6">
-                <p>Web Developer and Designer</p>
-              </div>
-            </div>
           </div>
           <div class="tab-pane fade" id="events_g" role="tabpanel" aria-labelledby="events_g-tab">
             <div class="list-group">
@@ -111,7 +90,6 @@
                 </div>
               </div>
                 <p class="mb-1"><%= eg.reduced_description 100 %></p>
-                <small class="text-muted">Donec id elit non mi porta.</small>
               <% end %>
             </div>
           </div>
@@ -121,11 +99,11 @@
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1"><%= link_to ec.name, ec%></h5>
-                    <small class="text-muted">3 days ago</small>
+                    <small class="text-muted"><%= ec.status%></small>
                   </div>
                 </div>
                 <p class="mb-1"><%= ec.reduced_description 100 %> </p>
-                <small class="text-muted"> Donec id elit non mi porta.</small>
+
             <% end %>
             </div>
           </div>
@@ -139,7 +117,6 @@
                   </div>
                 </div>
                 <p class="mb-1"><%= pack[:event].reduced_description 100 %></p>
-                <small class="text-muted">Donec id elit non mi porta.</small>
 
               <% end %>
             </div>

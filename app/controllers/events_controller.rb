@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, :except => [:index, :new, :create]
 
   def index
-    @events = Event.all #TODO filtration and limit a number of events
+    @events = Event.approved #TODO filtration and limit a number of events
   end
 
   def in
@@ -40,6 +40,7 @@ class EventsController < ApplicationController
   def show
     @creator = @event.creator
   end
+
 
   def edit
   end

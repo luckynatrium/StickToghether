@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_31_095136) do
+ActiveRecord::Schema.define(version: 2020_02_24_120813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 2020_01_31_095136) do
     t.datetime "date"
     t.datetime "duration"
     t.bigint "creator_id"
+    t.boolean "approved"
+    t.bigint "approved_by"
   end
 
   create_table "events_interests", force: :cascade do |t|
@@ -72,12 +74,13 @@ ActiveRecord::Schema.define(version: 2020_01_31_095136) do
     t.index ["interest_id"], name: "index_events_interests_on_interest_id"
   end
 
-  create_table "friends", force: :cascade do |t|
-    t.boolean "confirmation"
-    t.bigint "user1_id"
-    t.bigint "user2_id"
-    t.index ["user1_id"], name: "index_friends_on_user1_id"
-    t.index ["user2_id"], name: "index_friends_on_user2_id"
+  create_table "friendships", force: :cascade do |t|
+    t.boolean "status"
+    t.bigint "user_id"
+    t.bigint "friend_id"
+    t.boolean "initiator"
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -114,5 +117,6 @@ ActiveRecord::Schema.define(version: 2020_01_31_095136) do
     t.index ["user_id"], name: "index_users_interests_on_user_id"
   end
 
+  add_foreign_key "events", "admin_users", column: "approved_by"
   add_foreign_key "events", "users", column: "creator_id"
 end

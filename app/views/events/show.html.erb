@@ -62,9 +62,11 @@
             <p>Participants</p>
             <% @event.participants.each do |participant| %>
               <%= link_to participant.name, participant  %>
+              <% if current_user.id == @creator.id %>
               <%= link_to 'Kick',
                           reject_event_url(:user_id => participant.id),method: :delete %>
               <br/>
+              <% end %>
             <% end %>
           </div>
         </div>

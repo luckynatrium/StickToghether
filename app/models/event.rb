@@ -4,11 +4,14 @@ class Event < ApplicationRecord
   has_and_belongs_to_many :interests, join_table: :events_interests
   has_many :images, as: :imageable
   belongs_to :creator, class_name:'User', foreign_key: :creator_id
+
   scope :confirmed, ->{ where(attendances: {confirmation: true}) }
   scope :unconfirmed, -> { where(attendances: {confirmation: false})}
   scope :approved, -> {where approved: true}
   scope :refused, -> {where approved: false}
   scope :wait_moderating, -> {where approved: nil}
+  scope :alive, -> {where 'date > ?', Time.now }
+  scope :dead, -> {where.not.alive}
 
   def unconfirmed_users
     users.unconfirmed

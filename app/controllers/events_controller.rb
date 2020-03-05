@@ -2,8 +2,9 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
   before_action :set_event, :except => [:index, :new, :create]
 
+
   def index
-    @events = Event.approved #TODO filtration and limit a number of events
+    @events = Event.alive.approved #TODO filtration and limit a number of events
   end
 
   def in

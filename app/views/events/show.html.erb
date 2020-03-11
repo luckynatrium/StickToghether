@@ -87,7 +87,9 @@
                 </div>
                 <div class="col-md-6">
                   <% unless @event.interests.empty? %>
-                    <p><%= @event.interests.first.name %></p>
+                    <% @event.interests.each do |i| %>
+                    <p><%= i.name %></p>
+                    <% end %>
                   <% end %>
                 </div>
               </div>

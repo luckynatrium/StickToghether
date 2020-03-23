@@ -12,10 +12,6 @@ class Event < ApplicationRecord
   scope :wait_moderating, -> {where approved: nil}
   scope :alive, -> {where 'date > ?', Time.now }
   scope :dead, -> {where.not.alive}
-  
-  def add_interests(inter)
-    inter.each { |i| interests << Interest.find(i) }
-  end
 
   def unconfirmed_users
     users.unconfirmed

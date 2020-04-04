@@ -16,13 +16,13 @@ ActiveAdmin.register Event do
 
   member_action :approve, method: :put do
     event = Event.find params[:id]
-    event.update approved: true, approved_by: current_user.id
+    event.update approved: true, approved_by: current_admin_user.id
     redirect_to admin_events_url
   end
 
   member_action :refuse, method: :put do
     event = Event.find params[:id]
-    event.update approved: false, approved_by: current_user.id
+    event.update approved: false, approved_by: current_admin_user.id
     redirect_to admin_events_url
   end
 

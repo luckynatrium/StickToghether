@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :users
-  resource :user, only: [:show, :edit, :update]
+  devise_for :users # format: false
+  resource :user, only: [:show, :update]
 
   get 'events/in', to: 'events#in', as: 'request'
   get 'events/out', to: 'events#out', as: 'cancel'

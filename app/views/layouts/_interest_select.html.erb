@@ -1,0 +1,3 @@
+<%= select_tag 'user[interest]',
+              options_from_collection_for_select(Interest.all, :id, :name),
+              multiple: true, size: '10' %>

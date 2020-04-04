@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
 
   def index
-    @events = Event.alive.approved #TODO filtration and limit a number of events
+    @events = Event.alive.approved.order(:date).page(params[:page]) #TODO filtration and limit a number of events
   end
 
   def in
@@ -48,7 +48,7 @@ class EventsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @event.update(event_params)
+      if @event.update(event_params) && Interest.add_interests( @event, params[:interest] )
         format.html { redirect_to event_path, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -64,7 +64,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.creator_id = current_user.id unless current_user.nil?
-    @event.interests << Interest.find(params[:interest][0])
+    Interest.add_interests(@event, params[:interest])
     respond_to do |format|
       if @event.save!
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -74,7 +74,6 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   private
@@ -85,7 +84,7 @@ class EventsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
-    params.require(:event).permit(:name, :description, :date, :duration, :interest)
+    params.require(:event).permit(:name, :description, :date, :duration, :interest => [])
   end
 
   def attendance_params

@@ -15,6 +15,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+
+
+
   def requests()
     ev = events.unconfirmed.order requested_at: :asc
     req_time = ev.extract_associated(:attendances).map {|collection| collection.first.requested_at}.sort

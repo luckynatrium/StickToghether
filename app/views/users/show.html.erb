@@ -44,7 +44,7 @@
       </div>
       <div class="col-md-2">
         <% if current_user.id == @user.id %>
-          <%= link_to "Edit Profile", 'users/edit',class:"profile-edit-btn"%>
+          <%= link_to "Edit Profile",edit_user_registration_path(:id => @user.id),class:"profile-edit-btn"%>
         <% end %>
       </div>
     </div>
@@ -55,8 +55,9 @@
           <p>Friends</p>
           <br/>
           <p>Interests</p>
-          <%= @user.interests.each do |i| %>
-            <%= i.name %>
+          <% @user.interests.each do |i| %>
+            <%=link_to i.name, user_path(:id => @user.id), class: "link_def" %>
+            <br/>
           <% end %>
         </div>
       </div>

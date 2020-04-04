@@ -56,7 +56,8 @@
           <br/>
           <p>Interests</p>
           <% @user.interests.each do |i| %>
-            <%= i.name %>
+            <%=link_to i.name, user_path(:id => @user.id), class: "link_def" %>
+            <br/>
           <% end %>
         </div>
       </div>

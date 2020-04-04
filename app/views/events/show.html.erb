@@ -48,11 +48,9 @@
           <% if current_user.id == @creator.id %>
             <%= link_to "Edit Profile", edit_event_path(:id => @event.id) ,class:"profile-edit-btn"%>
           <% else %>
-            <% if @event.users.include? current_user %>
-              <%= link_to("I'm out", cancel_url(:id => @event.id),class:"profile-edit-btn") %>
-            <% else %>
-              <%= link_to("I'm in", request_url(:id => @event.id),class:"profile-edit-btn") %>
-            <% end %>
+            <%= link_to_if(@event.users.include?(current_user), "I'm out", cancel_url(:id => @event.id),class:"profile-edit-btn"){
+                  link_to("I'm in", request_url(:id => @event.id),class:"profile-edit-btn")}
+            %>
           <% end %>
         </div>
       </div>

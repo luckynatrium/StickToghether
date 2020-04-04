@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
 
   def index
-    @events = Event.alive.approved #TODO filtration and limit a number of events
+    @events = Event.alive.approved.order(:date).page(params[:page]) #TODO filtration and limit a number of events
   end
 
   def in
@@ -48,7 +48,7 @@ class EventsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @event.update(event_params)
+      if @event.update(event_params) && Interest.add_interests( @event, params[:interest] )
         format.html { redirect_to event_path, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -64,7 +64,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.creator_id = current_user.id unless current_user.nil?
-    @event.add_interests params[:interest]
+    Interest.add_interests(@event, params[:interest])
     respond_to do |format|
       if @event.save!
         format.html { redirect_to @event, notice: 'Event was successfully created.' }

@@ -13,6 +13,8 @@ class Event < ApplicationRecord
   scope :alive, -> {where 'date > ?', Time.now }
   scope :dead, -> {where.not.alive}
 
+  paginates_per 10
+
   def unconfirmed_users
     users.unconfirmed
   end
@@ -47,5 +49,6 @@ class Event < ApplicationRecord
       description
     end
   end
+
 
 end

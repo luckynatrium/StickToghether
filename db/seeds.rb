@@ -11,6 +11,8 @@ Interest.create(name: 'sport')
 Interest.create(name: 'date')
 Interest.create(name: 'board games')
 Interest.create(name: 'lunch')
+Interest.create(name: 'work')
+Interes.create(name: 'trip')
 
-
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

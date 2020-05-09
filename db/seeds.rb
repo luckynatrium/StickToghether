@@ -5,7 +5,7 @@
 #
 #   movies = Movie.form([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.form(name: 'Luke', movie: movies.first)
-
+admin = AdminUser.create!(email: 'admin@m.com', password: 'charlemagne', password_confirmation: 'charlemagne')
 Interest.create(name: 'cinema')
 Interest.create(name: 'sport')
 Interest.create(name: 'date')
@@ -14,6 +14,7 @@ Interest.create(name: 'lunch')
 Interest.create(name: 'work')
 Interest.create(name: 'trip')
 Interest.create(name: 'party')
+
 u1 = User.create!(name: 'boris', age: 18, role: 'U',email: 'boris@mail.com',password:'123456',
                   carma: 0 )
 Interest.add_interests(u1,[1,2,3,4,6])
@@ -27,7 +28,7 @@ u4 = User.create!(name: 'major321', age: 18, role: 'U',email: 'major321@mail.com
                   carma: 0 )
 Interest.add_interests(u4,[1,2,3,5,7])
 
-admin = AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+
 
 e1 = Event.create!(name:'Help me with site',description: 'I really need help in frontend. Just look at this',
                    date: Time.now + 1.day, duration: 3.month, approved: true, approved_by: admin.id,

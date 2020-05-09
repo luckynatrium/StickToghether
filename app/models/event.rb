@@ -19,6 +19,7 @@ class Event < ApplicationRecord
     users.unconfirmed
   end
 
+
   def participants
     users.confirmed
   end

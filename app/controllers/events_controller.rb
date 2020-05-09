@@ -4,7 +4,7 @@ class EventsController < ApplicationController
 
 
   def index
-    @events = Event.alive.approved.order(:date).page(params[:page]) #TODO filtration and limit a number of events
+    @events = Event.approved.order(:date) #TODO filtration and limit a number of events
   end
 
   def in

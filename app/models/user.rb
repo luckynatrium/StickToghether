@@ -16,15 +16,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-
-
   def requests()
     ev = events.unconfirmed.order requested_at: :asc
     req_time = ev.extract_associated(:attendances).map {|collection| collection.first.requested_at}.sort
     pack_to_h(ev,req_time)
   end
 
-  def pack_to_h(events, times)
+  def pack_to_h(events, times) # FIXME Wrong assosiation with time and event
     res = []
     events.each_with_index do |x, i|
       res << [:event,:time].zip([x, times[i]])

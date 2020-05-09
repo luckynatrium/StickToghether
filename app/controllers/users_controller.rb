@@ -5,9 +5,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    all_events = Event.approved
-    @events_g = all_events.where.not creator_id: @user.id
-    @events_c = all_events.where creator_id: @user.id
+    @events_g = @user.events.confirmed.where.not creator_id: @user.id
+    @events_c = Event.where creator_id: @user.id
     # TODO: add condition for confirmation
   end
 
@@ -16,7 +15,6 @@ class UsersController < ApplicationController
   # GET /user/new
   def new
     @user = User.new
-    @user.carma = 10
   end
 
   # GET /user/1/edit
@@ -28,6 +26,7 @@ class UsersController < ApplicationController
   # POST /user.json
   def create
     @user = User.new(user_params)
+    @user.carma |= 0
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }

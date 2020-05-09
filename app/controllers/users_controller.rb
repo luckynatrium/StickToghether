@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy]
 
-      # GET /users/1
+  # GET /users/1
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @events_g = Event.where.not creator_id: @user.id
-    @events_c = Event.where creator_id: @user.id
+    all_events = Event.approved
+    @events_g = all_events.where.not creator_id: @user.id
+    @events_c = all_events.where creator_id: @user.id
     # TODO: add condition for confirmation
   end
 

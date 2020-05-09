@@ -59,7 +59,7 @@
           <div class="profile-work">
             <p>Participants</p>
             <% @event.participants.each do |participant| %>
-              <%= link_to participant.name, participant  %>
+              <%= link_to participant.name, user_path(:id => participant.id)  %>
               <% if current_user.id == @creator.id %>
               <%= link_to 'Kick',
                           reject_event_url(:user_id => participant.id),method: :delete %>
@@ -91,6 +91,14 @@
                   <% end %>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Date</label>
+                </div>
+                <div class="col-md-6">
+                  <p><%= @event.date %></p>
+                </div>
+              </div>
             </div>
             <div class="tab-pane fade" id="request" role="tabpanel" aria-labelledby="request-tab">
               <div class="list-group">
@@ -105,7 +113,7 @@
                   </div>
                   <p class="mb-1"></p>
                   <p class="mb-1"></p>
-                  <small class="text-muted">Donec id elit non mi porta.</small>
+                  <small class="text-muted"></small>
 
                 <% end %>
               </div>

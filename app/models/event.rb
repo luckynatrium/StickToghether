@@ -42,6 +42,8 @@ class Event < ApplicationRecord
     end
   end
 
+
+
   def reduced_description(restriction)
     if description.length > restriction
       description[0,100] + '...'
